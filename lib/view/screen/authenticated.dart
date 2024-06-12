@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
-
 import '../../controller/auth/verfycode_controller.dart';
 import '../../core/class/logoutdialog.dart';
 import '../../core/constant/color.dart';
 import '../../core/shared/matButton.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Authenticated extends StatelessWidget {
   const Authenticated({super.key});
@@ -170,7 +170,7 @@ class Authenticated extends StatelessWidget {
                 ),
               ),
             ],
-          )
+          ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeInCirc)
         ]),
       ),
     ),);

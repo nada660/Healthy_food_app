@@ -33,6 +33,9 @@ class ForgotPasswordControllerImp extends ForgotPasswordController{
       print("Not Valid");
     }
   }
+  goToBack(){
+    Get.offNamed(AppRoute.login);
+  }
   goToAuthCode() {
     Get.offNamed(AppRoute.authcode);
   }

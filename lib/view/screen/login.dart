@@ -10,6 +10,7 @@ import '../../controller/auth/login_controller.dart';
 import '../../core/constant/routes.dart';
 import '../../core/shared/customTextFormField.dart';
 import '../../core/shared/matButton.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class Login extends StatelessWidget {
   @override
@@ -182,7 +183,7 @@ class Login extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeOut).then().slideX(),
             ),
           )),
           Column(children: [

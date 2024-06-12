@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SuccessDialog extends GetxController{
   final gradient = LinearGradient(
@@ -106,7 +107,7 @@ class SuccessDialog extends GetxController{
               ),
             ),
           ],
-        ),
+        ).animate().scaleXY(delay: 100.ms),
       ),
     );
     return Future.value(true);

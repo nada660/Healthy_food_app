@@ -15,7 +15,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
   final splashScreenController = Get.put(SplashScreenController());
   @override
   Widget build(BuildContext context) {
-   /*Future.delayed(const Duration(seconds: 5), (() {
+    /*Future.delayed(const Duration(seconds: 5), (() {
       Get.offNamed(AppRoute.login);
     }));*/
     return Scaffold(
@@ -28,7 +28,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
               color: AppColor.backgroundcolor,
             ),
           ),
-         /* Center(
+          /* Center(
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -38,17 +38,21 @@ class SplashScreenView extends GetView<SplashScreenController> {
               ),
             ),
           ),*/
-          Obx( () =>
-              AnimatedPositioned(
-                  child: Center(child: Container(decoration: BoxDecoration(
+          Obx(
+            () => AnimatedPositioned(
+              height: splashScreenController.animate.value ? 750 : 0,
+              width: splashScreenController.animate.value ? 400 : 0,
+              duration: const Duration(milliseconds: 1500),
+              child: Center(
+                  child: Container(
+                decoration: BoxDecoration(
                   image: DecorationImage(
-                  image: AssetImage('assets/images/image.png'),
+                    image: AssetImage('assets/images/image.png'),
                     scale: 2,
                   ),
-              ),)),
-                  height: splashScreenController.animate.value ? 750: 0,
-                  width: splashScreenController.animate.value ? 400 : 0,
-                  duration: const Duration(milliseconds: 1500)),
+                ),
+              )),
+            ),
           ),
           Column(children: [
             Expanded(

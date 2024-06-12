@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class LogoutDialog extends GetxController{
 
@@ -101,7 +102,7 @@ class LogoutDialog extends GetxController{
                     'assets/images/log_out_12.png'),
               )
             ],
-          ),
+          ).animate().scaleXY(delay: 100.ms),
         ),
 
     );

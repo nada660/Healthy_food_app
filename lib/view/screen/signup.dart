@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../controller/auth/signup_controller.dart';
 import '../../core/constant/color.dart';
-import '../../core/constant/routes.dart';
 import '../../core/functions/validinput.dart';
 import '../../core/shared/customTextFormField.dart';
 import '../../core/shared/matButton.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class SignUp extends StatelessWidget {
   @override
@@ -224,7 +224,7 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
+              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeOut).then().slideX(),
             ),
           )),
           Column(children: [

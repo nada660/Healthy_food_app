@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 class WrongMessageDialog extends GetxController{
 
@@ -91,7 +92,7 @@ class WrongMessageDialog extends GetxController{
                   'assets/images/ellipse_3.png'),
             )
           ],
-        ),
+        ).animate().scaleXY(delay: 100.ms),
       ),
     );
     return Future.value(true);
