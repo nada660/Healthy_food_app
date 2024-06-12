@@ -1,14 +1,9 @@
-import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
-
 import '../../controller/splash_screen_controller.dart';
-import '../../core/constant/routes.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
   SplashScreenView({Key? key}) : super(key: key);
