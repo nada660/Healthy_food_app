@@ -162,13 +162,6 @@ class SignUp extends StatelessWidget {
                                             color: AppColor.springRain,
                                           ),
                                         ),
-                                        /*final file = controller.selectedFile.value;
-                              return file != null
-                              ? Text('Selected file: ${file.name}')
-                                  : ElevatedButton(
-                              onPressed: controller.pickFile,
-                              child: Text('Pick a file'),
-                            );*/
                                       ),
                                     ),
                                     SizedBox(
