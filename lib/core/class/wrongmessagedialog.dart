@@ -62,21 +62,24 @@ class WrongMessageDialog extends GetxController{
                   SizedBox(
                     height: 50,
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty
-                            .all(AppColor
-                            .palmLeaf)),
-                    onPressed: () {},
-                    child: Text(
-                      'Try again',
-                      style: GoogleFonts.getFont(
-                        'Montaga',
-                        fontWeight:
-                        FontWeight.w400,
-                        fontSize: 12,
-                        color: Color(0xFFFFFDFD),
+                  Container(
+                    width: 150,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty
+                              .all(AppColor
+                              .palmLeaf)),
+                      onPressed: () {},
+                      child: Text(
+                        'Try again',
+                        style: GoogleFonts.getFont(
+                          'Montaga',
+                          fontWeight:
+                          FontWeight.w400,
+                          fontSize: 12,
+                          color: Color(0xFFFFFDFD),
+                        ),
                       ),
                     ),
                   ),

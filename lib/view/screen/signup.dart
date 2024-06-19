@@ -13,7 +13,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => SignUpControllerImp());
+    Get.put(SignUpControllerImp());
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -104,7 +104,8 @@ class SignUp extends StatelessWidget {
                             labelText: 'Password',
                             mycontroller: controller.password,
                             obscureText: controller.isshowpasseord2.value,
-                            iconData: Icons.lock_outline,
+                            iconData: controller.isshowpasseord2.value? Icons.visibility
+                            :Icons.visibility_off,
                             onTapIcon: (){
                               controller.isshowpasseord2.value =! controller.isshowpasseord2.value;
                             },
@@ -119,10 +120,11 @@ class SignUp extends StatelessWidget {
                             type: TextInputType.text,
                             mycontroller: controller.confirm,
                             labelText: 'Confirm Password',
-                            iconData: Icons.lock_outline,
-                            obscureText: controller.isshowpasseord2.value,
+                            iconData: controller.isshowpasseord2.value? Icons.visibility
+                                :Icons.visibility_off,
+                            obscureText: controller.isshowpasseord.value,
                             onTapIcon: (){
-                              controller.isshowpasseord2.value =! controller.isshowpasseord2.value;
+                              controller.isshowpasseord.value =! controller.isshowpasseord.value;
                             },
                             valid: (val) {
                               return validInput(val!, 8, 20, "password");
@@ -146,17 +148,27 @@ class SignUp extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.fromLTRB(0, 0, 12.4, 1),
-                                      child: Text(
-                                        'Certificate PDF file ',
-                                        style: GoogleFonts.getFont(
-                                          'Cabin',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: width * .04,
-                                          color: AppColor.springRain,
+                                    InkWell(
+                                      onTap: controller.pickFile,
+                                      child: Container(
+                                        margin:
+                                        EdgeInsets.fromLTRB(0, 0, 12.4, 1),
+                                        child: Text(
+                                          'Certificate PDF file ',
+                                          style: GoogleFonts.getFont(
+                                            'Cabin',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: width * .04,
+                                            color: AppColor.springRain,
+                                          ),
                                         ),
+                                        /*final file = controller.selectedFile.value;
+                              return file != null
+                              ? Text('Selected file: ${file.name}')
+                                  : ElevatedButton(
+                              onPressed: controller.pickFile,
+                              child: Text('Pick a file'),
+                            );*/
                                       ),
                                     ),
                                     SizedBox(
@@ -224,7 +236,7 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeOut).then().slideX(),
+              ).animate().shimmer(duration: const Duration(seconds: 1)).slideX(delay: 100.ms,curve: Curves.easeOut).then(),
             ),
           )),
           Column(children: [

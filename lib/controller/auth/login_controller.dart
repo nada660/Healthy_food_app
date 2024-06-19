@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:healthy_food/core/constant/routes.dart';
+import 'package:get_storage/get_storage.dart';
 
 abstract class LoginController extends GetxController{
   login();
@@ -14,7 +15,10 @@ class LoginControllerImp extends LoginController{
   late TextEditingController password;
   late TextEditingController mobilenumber;
 
-  var isshowpasseord = true.obs;
+  final GetStorage storage = GetStorage();
+
+  var iswpasswordHidden = true.obs;
+  final RxBool rememberMe = false.obs;
 
   @override
   login() {
@@ -29,23 +33,23 @@ class LoginControllerImp extends LoginController{
 
   @override
   goToSignUp() {
-  Get.offNamed(AppRoute.signup);
+    Get.toNamed(AppRoute.signup);
   }
   goToLogIn() {
-    Get.offNamed(AppRoute.login);
+    Get.toNamed(AppRoute.login);
   }
-  /*goToForgetPassword() {
-    Get.offNamed(AppRoute.forgetPassword);
-  }*/
 
-  @override
-
+  void RememberMe(bool value) {
+    rememberMe.value = value;
+    storage.write('rememberMe', value);
+  }
 
   @override
   void onInit() {
     email = TextEditingController();
     password = TextEditingController();
     mobilenumber = TextEditingController();
+    rememberMe.value = storage.read('rememberMe') ?? false;
     super.onInit();
   }
 

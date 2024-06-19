@@ -10,9 +10,9 @@ class SplashScreenController extends GetxController {
   final count = 0.obs;
 
   Future startAnimation() async{
-   await Future.delayed(const Duration(milliseconds: 500));
+   await Future.delayed(const Duration(seconds: 1));
     animate.value = true;
-    await Future.delayed(const Duration(milliseconds: 5000), (() {
+    await Future.delayed(const Duration(seconds: 2), (() {
       Get.offNamed(AppRoute.login);
     }));
   }

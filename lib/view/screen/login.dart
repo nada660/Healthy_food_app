@@ -15,7 +15,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => LoginControllerImp());
+    Get.put(LoginControllerImp());
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -72,19 +72,20 @@ class Login extends StatelessWidget {
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Obx(() => CustomTextFormField(
-                            type: TextInputType.text,
-                            labelText: 'Password',
-                            mycontroller: controller.password,
-                            iconData: Icons.lock_outline,
-                            obscureText: controller.isshowpasseord.value,
-                            onTapIcon: (){
-                              controller.isshowpasseord.value =! controller.isshowpasseord.value;
-                            },
-                            valid: (val) {
-                              return validInput(val!, 8, 20, "Password");
-                            },
-                          ),),
+                         Obx(() => CustomTextFormField(
+                           type: TextInputType.text,
+                           labelText: 'Password',
+                           mycontroller: controller.password,
+                           obscureText: controller.iswpasswordHidden.value,
+                           iconData: controller.iswpasswordHidden.value? Icons.visibility
+                               :Icons.visibility_off,
+                           onTapIcon: (){
+                             controller.iswpasswordHidden.value = !controller.iswpasswordHidden.value;
+                           },
+                           valid: (val) {
+                             return validInput(val!, 8, 20, "Password");
+                           },
+                         ),),
                           SizedBox(
                             height: height * 0.03,
                           ),
@@ -113,21 +114,24 @@ class Login extends StatelessWidget {
                                         children: [
                                           SizedBox(
                                             height: height * 0.03,
-                                            child: Image(
-                                              image: AssetImage('assets/images/checkcircle.png'),
-                                            ),
+                                            width: width *.06,
+                                            child:Obx(() =>  Checkbox(
+                                                activeColor: AppColor.summerGreen,
+                                                value: controller.rememberMe.value,
+                                                onChanged: (value){
+                                                  controller.RememberMe(value!);
+                                                }),)
                                           ),
                                           SizedBox(
                                             width: width * .3,
                                             child: Text(
                                               'Remember me',
                                               style: GoogleFonts.getFont(
-                                                'Montaga',
+                                                'Cabin',
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: width * .04,
+                                                fontSize: width * .045,
                                                 color: AppColor.camarone,
                                               ),
-
                                             ),
                                           ),
                                         ],
@@ -135,7 +139,7 @@ class Login extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: (){
-                                        Get.offNamed(AppRoute.forgetPassword);
+                                        Get.toNamed(AppRoute.forgetPassword);
                                       },
                                       child: Text(
                                         'Forgot Password?',
@@ -183,7 +187,7 @@ class Login extends StatelessWidget {
                     ],
                   ),
                 ),
-              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeOut).then().slideX(),
+              ).animate().shimmer(duration: const Duration(seconds: 1)).slideX(delay: 50.ms,curve: Curves.easeOut).then(),
             ),
           )),
           Column(children: [

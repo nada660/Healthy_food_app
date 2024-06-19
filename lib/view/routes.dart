@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
 import '../core/class/logoutdialog.dart';
 import '../core/constant/routes.dart';
@@ -10,10 +11,10 @@ import 'screen/signup.dart';
 import 'screen/splachscreenview.dart';
 import 'widget/logoutdialog.dart';
 
-Map<String, Widget Function(BuildContext)> routes = {
-  AppRoute.login: (context) =>  Login() ,
-  AppRoute.signup: (context) =>  SignUp() ,
-  AppRoute.authcode: (context) =>  Authenticated() ,
-  AppRoute.SplashScreenView : (context) =>  SplashScreenView() ,
-  AppRoute.forgetPassword : (context) =>  ForgetPassword() ,
-};
+List<GetPage<dynamic>>? routes = [
+  GetPage(name:AppRoute.SplashScreenView, page: () =>  SplashScreenView()) ,
+  GetPage(name:AppRoute.login, page: () =>  Login()) ,
+  GetPage(name:AppRoute.signup, page: () =>  SignUp()) ,
+  GetPage(name:AppRoute.authcode, page: () =>  Authenticated()) ,
+  GetPage(name:AppRoute.forgetPassword, page: () =>  ForgetPassword()) ,
+];

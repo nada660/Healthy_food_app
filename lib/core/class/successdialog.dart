@@ -85,21 +85,24 @@ class SuccessDialog extends GetxController{
                   SizedBox(
                     height: 30,
                   ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor:
-                        MaterialStateProperty
-                            .all(AppColor
-                            .evBotton)),
-                    onPressed: () {},
-                    child: Text(
-                      'Continue',
-                      style: GoogleFonts.getFont(
-                        'Montaga',
-                        fontWeight:
-                        FontWeight.w400,
-                        fontSize: 16,
-                        color: AppColor.camarone,
+                  Container(
+                    width: 150,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty
+                              .all(AppColor
+                              .evBotton)),
+                      onPressed: () {},
+                      child: Text(
+                        'Continue',
+                        style: GoogleFonts.getFont(
+                          'Montaga',
+                          fontWeight:
+                          FontWeight.w400,
+                          fontSize: 16,
+                          color: AppColor.camarone,
+                        ),
                       ),
                     ),
                   ),

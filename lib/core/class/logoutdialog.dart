@@ -27,7 +27,7 @@ class LogoutDialog extends GetxController{
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 50,
+                      height: 70,
                     ),
                     Text(
                       'Oh no! You’re leaving...',
@@ -35,7 +35,7 @@ class LogoutDialog extends GetxController{
                       style: GoogleFonts.getFont(
                         'Cabin',
                         fontWeight: FontWeight.w500,
-                        fontSize: 10,
+                        fontSize: 16,
                         color: Color(0xFF035014),
                       ),
                     ),
@@ -52,41 +52,47 @@ class LogoutDialog extends GetxController{
                     SizedBox(
                       height: 30,
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty
-                              .all(AppColor
-                              .evBotton)),
-                      onPressed: () {
-                        Get.back();
-                      },
-                      child: Text(
-                        'No',
-                        style: GoogleFonts.getFont(
-                          'Montaga',
-                          fontWeight:
-                          FontWeight.w400,
-                          fontSize: 13,
-                          color: Color(0xFF035014),
+                    Container(
+                      width: 150,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                            MaterialStateProperty
+                                .all(AppColor
+                                .evBotton)),
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: Text(
+                          'No',
+                          style: GoogleFonts.getFont(
+                            'Montaga',
+                            fontWeight:
+                            FontWeight.w400,
+                            fontSize: 13,
+                            color: Color(0xFF035014),
+                          ),
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty
-                              .all(AppColor
-                              .evBotton)),
-                      onPressed: () {},
-                      child: Text(
-                        'Yes,Log Me out',
-                        style: GoogleFonts.getFont(
-                          'Montaga',
-                          fontWeight:
-                          FontWeight.w400,
-                          fontSize: 13,
-                          color: Color(0xFF035014),
+                    Container(
+                      width: 150,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                            MaterialStateProperty
+                                .all(AppColor
+                                .evBotton)),
+                        onPressed: () {},
+                        child: Text(
+                          'Yes,Log Me out',
+                          style: GoogleFonts.getFont(
+                            'Montaga',
+                            fontWeight:
+                            FontWeight.w400,
+                            fontSize: 13,
+                            color: Color(0xFF035014),
+                          ),
                         ),
                       ),
                     ),

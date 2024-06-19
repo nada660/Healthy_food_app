@@ -17,7 +17,7 @@ class Authenticated extends StatelessWidget {
   Widget build(BuildContext context) {
     final LogoutDialog logoutDialog = LogoutDialog();
 
-    Get.lazyPut(() => VerfyCodeControllerImp());
+    Get.put(VerfyCodeControllerImp());
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return GetBuilder<VerfyCodeControllerImp>(builder: (controller) =>Scaffold(
@@ -170,7 +170,7 @@ class Authenticated extends StatelessWidget {
                 ),
               ),
             ],
-          ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeInCirc)
+          ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(curve: Curves.easeInCirc),
         ]),
       ),
     ),);

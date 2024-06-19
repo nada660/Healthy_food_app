@@ -9,7 +9,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 class ForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => ForgotPasswordControllerImp());
+    Get.put(ForgotPasswordControllerImp());
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return GetBuilder<ForgotPasswordControllerImp>(builder: (controller) => Scaffold(
@@ -73,7 +73,7 @@ class ForgetPassword extends StatelessWidget {
                         ),
                       ]),
                 ),
-              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 100.ms,curve: Curves.easeOut),
+              ).animate().shimmer(duration: const Duration(seconds: 1)).fadeIn(delay: 40.ms,curve: Curves.easeOut),
             ),
           )
         ],

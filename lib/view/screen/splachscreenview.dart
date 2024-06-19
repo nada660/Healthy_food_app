@@ -10,9 +10,6 @@ class SplashScreenView extends GetView<SplashScreenController> {
   final splashScreenController = Get.put(SplashScreenController());
   @override
   Widget build(BuildContext context) {
-    /*Future.delayed(const Duration(seconds: 5), (() {
-      Get.offNamed(AppRoute.login);
-    }));*/
     return Scaffold(
       body: Stack(
         children: [
@@ -23,16 +20,6 @@ class SplashScreenView extends GetView<SplashScreenController> {
               color: AppColor.backgroundcolor,
             ),
           ),
-          /* Center(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/image.png'),
-                  scale: 2,
-                ),
-              ),
-            ),
-          ),*/
           Obx(
             () => AnimatedPositioned(
               height: splashScreenController.animate.value ? 750 : 0,
@@ -40,8 +27,8 @@ class SplashScreenView extends GetView<SplashScreenController> {
               duration: const Duration(milliseconds: 1500),
               child: Center(
                   child: Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
+                decoration: const BoxDecoration(
+                  image:  DecorationImage(
                     image: AssetImage('assets/images/image.png'),
                     scale: 2,
                   ),

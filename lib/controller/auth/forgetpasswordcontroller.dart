@@ -34,10 +34,10 @@ class ForgotPasswordControllerImp extends ForgotPasswordController{
     }
   }
   goToBack(){
-    Get.offNamed(AppRoute.login);
+    Get.toNamed(AppRoute.login);
   }
   goToAuthCode() {
-    Get.offNamed(AppRoute.authcode);
+    Get.toNamed(AppRoute.authcode);
   }
 
 }

@@ -13,7 +13,7 @@ class VerfyCodeControllerImp extends VerfyCodeController{
 
   }
   goToBack(){
-    Get.offNamed(AppRoute.forgetPassword);
+    Get.toNamed(AppRoute.forgetPassword);
   }
   @override
   void onInit() {
