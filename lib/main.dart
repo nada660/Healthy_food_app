@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'view/routes.dart';
+import 'bindings/binding.dart';
+import 'core/class/cashestorageservices.dart';
+import 'routes.dart';
 import 'view/screen/splachscreenview.dart';
 
-void main() {
+void main()  async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Preferences.init();
   runApp(const MyApp());
 }
 
@@ -17,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home:  SplashScreenView(),
+      initialBinding: InitialBindings(),
       getPages: routes,
     );
   }

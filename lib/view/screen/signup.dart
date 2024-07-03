@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:healthy_food/view/widget/signup_profile_picture.dart';
 import '../../controller/auth/signup_controller.dart';
+import '../../core/class/statusrequest.dart';
 import '../../core/constant/color.dart';
 import '../../core/functions/validinput.dart';
 import '../../core/shared/customTextFormField.dart';
@@ -29,7 +31,7 @@ class SignUp extends StatelessWidget {
           SingleChildScrollView(
               child: GetBuilder<SignUpControllerImp>(
             builder: (controller) => Form(
-              key: controller.formstate,
+              key: controller.signupFormstate,
               child: Container(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 42),
@@ -48,19 +50,7 @@ class SignUp extends StatelessWidget {
                             width: width * .05,
                             height: height * .09,
                           ),
-                          Container(
-                            //margin: EdgeInsets.fromLTRB(0, 0, 90.3, 45.3),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: SizedBox(
-                                width: width * .93,
-                                height: height *.098,
-                                child: SvgPicture.asset(
-                                  'assets/vectors/group_11_x2.svg',
-                                ),
-                              ),
-                            ),
-                          ),
+                          SignUpProfilePicture(),
                           SizedBox(
                             height: height * 0.05,
                           ),
@@ -93,43 +83,51 @@ class SignUp extends StatelessWidget {
                             mycontroller: controller.mobile,
                             labelText: 'Mobile Number',
                             valid: (val) {
-                              return validInput(val!, 10, 20, "Mobile Number");
+                              return validInput(val!, 8, 20, "Mobile Number");
                             },
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Obx(() => CustomTextFormField(
-                            type: TextInputType.text,
-                            labelText: 'Password',
-                            mycontroller: controller.password,
-                            obscureText: controller.isshowpasseord2.value,
-                            iconData: controller.isshowpasseord2.value? Icons.visibility
-                            :Icons.visibility_off,
-                            onTapIcon: (){
-                              controller.isshowpasseord2.value =! controller.isshowpasseord2.value;
-                            },
-                            valid: (val) {
-                              return validInput(val!, 8, 20, "password");
-                            },
-                          ),),
+                          Obx(
+                            () => CustomTextFormField(
+                              type: TextInputType.text,
+                              labelText: 'Password',
+                              mycontroller: controller.password,
+                              obscureText: controller.isShowPassword2.value,
+                              iconData: controller.isShowPassword2.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              onTapIcon: () {
+                                controller.isShowPassword2.value =
+                                    !controller.isShowPassword2.value;
+                              },
+                              valid: (val) {
+                                return validInput(val!, 5, 20, "password");
+                              },
+                            ),
+                          ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                          Obx(() => CustomTextFormField(
-                            type: TextInputType.text,
-                            mycontroller: controller.confirm,
-                            labelText: 'Confirm Password',
-                            iconData: controller.isshowpasseord2.value? Icons.visibility
-                                :Icons.visibility_off,
-                            obscureText: controller.isshowpasseord.value,
-                            onTapIcon: (){
-                              controller.isshowpasseord.value =! controller.isshowpasseord.value;
-                            },
-                            valid: (val) {
-                              return validInput(val!, 8, 20, "password");
-                            },
-                          ),),
+                          Obx(
+                            () => CustomTextFormField(
+                              type: TextInputType.text,
+                              mycontroller: controller.confirm,
+                              labelText: 'Confirm Password',
+                              iconData: controller.isShowPassword.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              obscureText: controller.isShowPassword.value,
+                              onTapIcon: () {
+                                controller.isShowPassword.value =
+                                    !controller.isShowPassword.value;
+                              },
+                              valid: (val) {
+                                return validInput(val!, 5, 20, "password");
+                              },
+                            ),
+                          ),
                           SizedBox(
                             height: height * 0.03,
                           ),
@@ -152,7 +150,7 @@ class SignUp extends StatelessWidget {
                                       onTap: controller.pickFile,
                                       child: Container(
                                         margin:
-                                        EdgeInsets.fromLTRB(0, 0, 12.4, 1),
+                                            EdgeInsets.fromLTRB(0, 0, 12.4, 1),
                                         child: Text(
                                           'Certificate PDF file ',
                                           style: GoogleFonts.getFont(
@@ -179,19 +177,39 @@ class SignUp extends StatelessWidget {
                                     ),
                                   ],
                                 ),
+
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin:
+                            EdgeInsets.fromLTRB(0, 0, 12.4, 1),
+                            child: Text(
+                              controller.selectedFile!= null
+                                ? controller.selectedFile!.path.split('/').last
+                                : 'please choose file ',
+                              style: GoogleFonts.getFont(
+                                'Cabin',
+                                fontWeight: FontWeight.w500,
+                                fontSize: width * .04,
+                                color: AppColor.springRain,
                               ),
                             ),
                           ),
                           SizedBox(
                             height: height * 0.03,
                           ),
-                          CustomButtom(
-                            text: 'Sign up',
-                            color: AppColor.summerGreen,
-                            onPressed: () {
-                              controller.signUp();
-                            },
-                          ),
+                          controller.statusRequest == StatusRequest.loading
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : CustomButtom(
+                                  text: 'Sign up',
+                                  color: AppColor.summerGreen,
+                                  onPressed: () {
+                                    controller.signUp();
+                                  },
+                                ),
                           SizedBox(
                             height: height * .04,
                             child: Row(
@@ -207,7 +225,7 @@ class SignUp extends StatelessWidget {
                                   ),
                                 ),
                                 InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     controller.goToLogin();
                                   },
                                   child: Text(
@@ -229,7 +247,11 @@ class SignUp extends StatelessWidget {
                     ],
                   ),
                 ),
-              ).animate().shimmer(duration: const Duration(seconds: 1)).slideX(delay: 100.ms,curve: Curves.easeOut).then(),
+              )
+                  .animate()
+                  .shimmer(duration: const Duration(seconds: 1))
+                  .slideX(delay: 100.ms, curve: Curves.easeOut)
+                  .then(),
             ),
           )),
           Column(children: [
@@ -239,8 +261,8 @@ class SignUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 SizedBox(
-                  width: width *.018,
-                  height: height *.019,
+                  width: width * .018,
+                  height: height * .019,
                   child: Image.asset('assets/images/Ellipse 2.png'),
                 )
               ],

@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../constant/routes.dart';
+
 class SuccessDialog extends GetxController{
   final gradient = LinearGradient(
     begin: Alignment.topCenter,
@@ -26,7 +28,6 @@ class SuccessDialog extends GetxController{
                 BorderRadius.circular(20),
                 color: AppColor.backgroundcolor,
               ),
-              //color: AppColor.backgroundcolor,
               margin: EdgeInsets.only(top: 20),
               width: 393,
               height: 375,
@@ -93,7 +94,9 @@ class SuccessDialog extends GetxController{
                           MaterialStateProperty
                               .all(AppColor
                               .evBotton)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.offNamed(AppRoute.login);
+                      },
                       child: Text(
                         'Continue',
                         style: GoogleFonts.getFont(

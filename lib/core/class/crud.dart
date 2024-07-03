@@ -5,9 +5,9 @@ import 'package:healthy_food/core/functions/checkinternet.dart';
 import 'package:http/http.dart' as http;
 
 class Crud {
-  Future<Either<StatusRequest, Map>> postData(String linkurl, Map data) async {
+  Future<Either<StatusRequest, Map>> postData(String linkurl, Map data, Map<String,String>? Headers) async {
     if (await checkInternet()) {
-      var response = await http.post(Uri.parse(linkurl), body: data);
+      var response = await http.post(Uri.parse(linkurl), body: data, headers: Headers);
       print(response.statusCode);
       if (response.statusCode == 200 || response.statusCode == 201) {
         Map responsebody = jsonDecode(response.body);
@@ -21,3 +21,4 @@ class Crud {
     }
   }
 }
+

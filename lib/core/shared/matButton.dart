@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthy_food/core/constant/color.dart';
-
 class CustomButtom extends StatelessWidget {
   final String text;
   final  color;

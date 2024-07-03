@@ -4,9 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:healthy_food/core/constant/color.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../controller/auth/home_contrroler.dart';
+
 class LogoutDialog extends GetxController{
 
   Future<bool> ShowMyLogoutDialog(){
+    Get.put(HomeControllerImp());
     Get.dialog(
          Dialog(
           backgroundColor: Colors.transparent,
@@ -83,7 +86,9 @@ class LogoutDialog extends GetxController{
                             MaterialStateProperty
                                 .all(AppColor
                                 .evBotton)),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.find<HomeControllerImp>().logout();
+                        },
                         child: Text(
                           'Yes,Log Me out',
                           style: GoogleFonts.getFont(

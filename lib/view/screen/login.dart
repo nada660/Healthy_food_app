@@ -7,7 +7,7 @@ import 'package:healthy_food/core/constant/color.dart';
 import 'package:flutter/src/material/icons.dart';
 import 'package:healthy_food/core/functions/validinput.dart';
 import '../../controller/auth/login_controller.dart';
-import '../../core/constant/routes.dart';
+import '../../core/class/statusrequest.dart';
 import '../../core/shared/customTextFormField.dart';
 import '../../core/shared/matButton.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -31,7 +31,7 @@ class Login extends StatelessWidget {
           SingleChildScrollView(
               child: GetBuilder<LoginControllerImp>(
             builder: (controller) => Form(
-              key: controller.formstate,
+              key: controller.loginFormstate,
               child: Container(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: height * .042),
@@ -46,7 +46,6 @@ class Login extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-
                           CustomTextFormField(
                             type: TextInputType.emailAddress,
                             //hinttext: 'test@gmail.com',
@@ -63,39 +62,47 @@ class Login extends StatelessWidget {
                           CustomTextFormField(
                             type: TextInputType.phone,
                             labelText: 'Mobile Number',
-                            mycontroller: controller.mobilenumber,
+                            mycontroller: controller.mobile,
                             iconData: Icons.phone_android_outlined,
                             valid: (val) {
-                              return validInput(val!, 10, 20, "Mobile Number");
+                              return validInput(val!, 8, 20, "Mobile Number");
                             },
                           ),
                           SizedBox(
                             height: height * 0.02,
                           ),
-                         Obx(() => CustomTextFormField(
-                           type: TextInputType.text,
-                           labelText: 'Password',
-                           mycontroller: controller.password,
-                           obscureText: controller.iswpasswordHidden.value,
-                           iconData: controller.iswpasswordHidden.value? Icons.visibility
-                               :Icons.visibility_off,
-                           onTapIcon: (){
-                             controller.iswpasswordHidden.value = !controller.iswpasswordHidden.value;
-                           },
-                           valid: (val) {
-                             return validInput(val!, 8, 20, "Password");
-                           },
-                         ),),
+                          Obx(
+                            () => CustomTextFormField(
+                              type: TextInputType.text,
+                              labelText: 'Password',
+                              mycontroller: controller.password,
+                              obscureText: controller.iswpasswordHidden.value,
+                              iconData: controller.iswpasswordHidden.value
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              onTapIcon: () {
+                                controller.iswpasswordHidden.value =
+                                    !controller.iswpasswordHidden.value;
+                              },
+                              valid: (val) {
+                                return validInput(val!, 4, 20, "Password");
+                              },
+                            ),
+                          ),
                           SizedBox(
                             height: height * 0.03,
                           ),
-                          CustomButtom(
-                            text: 'Login',
-                            color: AppColor.summerGreen,
-                            onPressed: () {
-                              controller.login();
-                            },
-                          ),
+                          controller.statusRequest == StatusRequest.loading
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : CustomButtom(
+                                  text: 'Login',
+                                  color: AppColor.summerGreen,
+                                  onPressed: () {
+                                    controller.login();
+                                  },
+                                ),
                           Container(
                             margin: EdgeInsets.fromLTRB(16.5, 0, 0, 135),
                             child: Align(
@@ -110,18 +117,23 @@ class Login extends StatelessWidget {
                                     Container(
                                       //margin: EdgeInsets.fromLTRB(0, 0.5, 8, 0.5),
                                       child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           SizedBox(
-                                            height: height * 0.03,
-                                            width: width *.06,
-                                            child:Obx(() =>  Checkbox(
-                                                activeColor: AppColor.summerGreen,
-                                                value: controller.rememberMe.value,
-                                                onChanged: (value){
-                                                  controller.RememberMe(value!);
-                                                }),)
-                                          ),
+                                              height: height * 0.03,
+                                              width: width * .06,
+                                              child: Obx(
+                                                () => Checkbox(
+                                                    activeColor:
+                                                        AppColor.summerGreen,
+                                                    value: controller
+                                                        .rememberMe.value,
+                                                    onChanged: (value) {
+                                                      controller.RememberMe(
+                                                          value!);
+                                                    }),
+                                              )),
                                           SizedBox(
                                             width: width * .3,
                                             child: Text(
@@ -138,8 +150,8 @@ class Login extends StatelessWidget {
                                       ),
                                     ),
                                     InkWell(
-                                      onTap: (){
-                                        Get.toNamed(AppRoute.forgetPassword);
+                                      onTap: () {
+                                        //Get.toNamed(AppRoute.forgetPassword);
                                       },
                                       child: Text(
                                         'Forgot Password?',
@@ -187,7 +199,11 @@ class Login extends StatelessWidget {
                     ],
                   ),
                 ),
-              ).animate().shimmer(duration: const Duration(seconds: 1)).slideX(delay: 50.ms,curve: Curves.easeOut).then(),
+              )
+                  .animate()
+                  .shimmer(duration: const Duration(seconds: 1))
+                  .slideX(delay: 50.ms, curve: Curves.easeOut)
+                  .then(),
             ),
           )),
           Column(children: [
