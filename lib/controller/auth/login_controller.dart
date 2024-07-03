@@ -40,48 +40,6 @@ class LoginControllerImp extends LoginController{
       update();
       var response = await loginData.postdata(email.text, mobile.text, password.text);
       print("=============================== Controller $response ");
-      //statusRequest = handlingData(response);
-      /*
-      if (StatusRequest.success == statusRequest) {
-        if (response.statusCode == 200) {
-          print("=============================== Controller $response ");
-          var data =  jsonDecode(await response.stream.bytesToString());
-
-          print("=============================== Controller $data");
-
-          String accessTokenValue = data['data']['access_token'];
-          String refreshTokenValue = data['data']['refresh_token'];
-          await pref!.setString('access_token', json.encode(accessTokenValue));
-          await pref!
-              .setString('refresh_token', json.encode(refreshTokenValue));
-
-          String accessToken =
-          json.decode(pref!.getString('access_token') ?? '');
-          String refreshToken =
-          json.decode(pref!.getString('refresh_token') ?? '');
-
-          print("Access Token is : $accessToken");
-          print("Refresh Token is : $refreshToken");
-         /* accessToken = await Preferences.preferences?.setString('refresh_token', response['refresh_token']);
-          refreshToken = await Preferences.preferences?.setString('access_token', response['access_token']);
-          print("Access Token is : $accessToken");
-          print("Refresh Token is : $refreshToken");*/
-          Get.snackbar("Log In","User Logged In Successfully");
-          Get.offNamed(AppRoute.home);
-        } else if (response.statusCode == 422) {
-          Get.snackbar("Log In","User Logged In Successfully");
-          Get.defaultDialog(
-              title: "ُWarning", middleText: "All fields are required");
-          statusRequest = StatusRequest.failure;
-        }else if (response.statusCode == 404) {
-          Get.snackbar("ُWarning","Email Does not Exists");
-          statusRequest = StatusRequest.failure;
-        } else {
-          Get.snackbar("Log In","Error logging in");
-          statusRequest = StatusRequest.failure;
-        }
-      }
-*/
       update();
     } else {
       print("Not Valid");

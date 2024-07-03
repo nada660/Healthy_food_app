@@ -16,27 +16,3 @@ class LogoutData {
     return response;
   }
 }
-
-
-
-
-/*
-class LogOut {
-  Future<void> logout(String token) async {
-    final response = await http.post(
-      Uri.parse(AppLink.logOut),
-      headers: {
-        'Authorization': 'Bearer $token',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      // Logout successful, clear the token and other user data
-      await Get.find<HomeControllerImp>().clearUserData();
-    } else {
-      // Logout failed, handle the error
-    }
-  }
-}
-
-*/
