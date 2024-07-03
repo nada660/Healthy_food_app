@@ -10,8 +10,12 @@ import '../../core/constant/color.dart';
 import '../../core/shared/matButton.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+String verfycode = "";
+
 class Authenticated extends StatelessWidget {
-  String verfycode = "";
+  const Authenticated({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {

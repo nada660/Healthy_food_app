@@ -5,19 +5,25 @@ import 'package:healthy_food/core/constant/color.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../controller/auth/signup_controller.dart';
 
-class SignUpProfilePicture extends StatelessWidget {
-  File? pickedFile;
-  ImagePicker imagePicker = ImagePicker();
-  SignUpControllerImp signUpControllerImp =Get.put(SignUpControllerImp());
+class SignUpProfilePicture extends StatefulWidget {
 
-  SignUpProfilePicture({
-    Key? key,
-  }) : super(key: key);
+  const SignUpProfilePicture({
+    super.key,
+  });
+
+  @override
+  State<SignUpProfilePicture> createState() => _SignUpProfilePictureState();
+}
+
+class _SignUpProfilePictureState extends State<SignUpProfilePicture> {
+  File? pickedFile;
+
+  ImagePicker imagePicker = ImagePicker();
+
+  SignUpControllerImp signUpControllerImp =Get.put(SignUpControllerImp());
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return GetBuilder<SignUpControllerImp>(
         init: SignUpControllerImp(),
         builder: (controller)=> Stack(
@@ -85,7 +91,7 @@ class SignUpProfilePicture extends StatelessWidget {
                       Icons.image,
                       color:AppColor.limeade,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Text(

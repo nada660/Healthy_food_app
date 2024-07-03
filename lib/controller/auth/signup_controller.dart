@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:healthy_food/core/class/incorrectdialog.dart';
 import 'package:healthy_food/core/constant/routes.dart';
 import 'package:file_picker/file_picker.dart';
